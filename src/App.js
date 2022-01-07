@@ -1,5 +1,5 @@
 import React from 'react'
-import SetUp from './tutorial/8-useContext/setup/Practise'
+import SetUp from './Movie'
 
 
 function App() {

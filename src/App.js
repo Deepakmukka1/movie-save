@@ -1,12 +1,12 @@
 import React from 'react'
-import SetUp from './Movie'
+import MovieSPA from './components'
 
 
 function App() {
   return (
     <div className='container'>
       <h2>Your Movie List</h2>
-      <SetUp/>
+      <MovieSPA/>
     </div>
   )
 }

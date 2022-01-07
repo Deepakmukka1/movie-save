@@ -1,5 +1,6 @@
 # movie-save
-A simple example of using various react hooks
+A simple website created using various react hooks
+
 
 ## Hooks used
 

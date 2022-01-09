@@ -6,14 +6,10 @@ import MovieCard from "./MovieCard";
 import Navbar from "./Navbar";
 import { reducer } from "./Reducer";
 
-export const MovieContext=React.createContext()
+export const MovieContext = React.createContext();
 
 const PracticeContext = () => {
-
-
-  const listEndRef=useRef(null)
-
- 
+  const listEndRef = useRef(null);
 
   const [movieState, setMovieState] = useState({
     moviename: "",
@@ -26,7 +22,6 @@ const PracticeContext = () => {
     isModalOpen: false,
     modalContent: "",
   };
-
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -42,37 +37,39 @@ const PracticeContext = () => {
     // console.log(movieState);
     if (movieState.image && movieState.moviename && movieState.year) {
       dispatch({ type: "ADD_MOVIE", payload: movieState });
-    }
-    else
-    {
-      dispatch({type:"FILL_ALL"})
+      setMovieState({
+        moviename: "",
+        year: "",
+        image: "",
+      });
+    } else {
+      dispatch({ type: "FILL_ALL" });
     }
   };
 
-  useEffect(()=>{
-    listEndRef.current.scrollIntoView({behaviour:'smooth'})
-  },[state.moviesList])
+  useEffect(() => {
+    listEndRef.current.scrollIntoView({ behaviour: "smooth" });
+  }, [state.moviesList]);
 
   function isValidUrl(_string) {
     const matchPattern = /^(?:\w+:)?\/\/([^\s.]+\.\S{2}|localhost[:?\d]*)\S*$/;
     return matchPattern.test(_string);
   }
 
-  const closeModal=()=>{
+  const closeModal = () => {
+    dispatch({ type: "CLOSE_MODAL" });
+  };
 
-    dispatch({type:"CLOSE_MODAL"})
-  }
-
-  const deleteMovie=(index)=>{
-
-    dispatch({type:"DELETE_MOVIE",payload:index})
-
-  }
+  const deleteMovie = (index) => {
+    dispatch({ type: "DELETE_MOVIE", payload: index });
+  };
 
   return (
-    <MovieContext.Provider value={{state}}>
-      <Navbar/>
-      {state.isModalOpen && <Modal modalContent={state.modalContent} closeModal={closeModal} />}
+    <MovieContext.Provider value={{ state }}>
+      <Navbar />
+      {state.isModalOpen && (
+        <Modal modalContent={state.modalContent} closeModal={closeModal} />
+      )}
       <form className="form" onSubmit={handleSubmit}>
         <label>✨ Movie name </label>
         <input
@@ -81,6 +78,7 @@ const PracticeContext = () => {
           onChange={(e) => {
             handleChange(e);
           }}
+          value={movieState.moviename}
         />{" "}
         <br />
         <label>🚀 Year of release </label>
@@ -90,12 +88,14 @@ const PracticeContext = () => {
           onChange={(e) => {
             handleChange(e);
           }}
+          value={movieState.year}
         />{" "}
         <br />
         <label>🎀 Image url </label>
         <input
           type="text"
           name="image"
+          value={movieState.image}
           onChange={(e) => {
             handleChange(e);
           }}
@@ -117,10 +117,16 @@ const PracticeContext = () => {
 
       <div className="users">
         {/* <h3>Your movies</h3> */}
-        {state.moviesList.map((movie,index) => {
-          return <MovieCard movie={movie} key={index} deleteMovie={()=>{
-              deleteMovie(index)
-          }}/>;
+        {state.moviesList.map((movie, index) => {
+          return (
+            <MovieCard
+              movie={movie}
+              key={index}
+              deleteMovie={() => {
+                deleteMovie(index);
+              }}
+            />
+          );
         })}
         <div ref={listEndRef}></div>
       </div>

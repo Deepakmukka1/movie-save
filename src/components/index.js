@@ -36,7 +36,7 @@ const PracticeContext = () => {
     e.preventDefault();
     // console.log(movieState);
 
-    if(!isValidUrl(movieState.image))
+    if(movieState.moviename && movieState.year && !isValidUrl(movieState.image))
     {
       dispatch({ type: "INVALID_IMAGE_URL" });
       return

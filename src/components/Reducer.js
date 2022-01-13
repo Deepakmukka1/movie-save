@@ -37,5 +37,13 @@ export const reducer = (state, action) => {
         ...state,isModalOpen:true,modalContent:"🚫 Please fill all fileds"
       }
     }
+    if(action.type==="INVALID_IMAGE_URL")
+    {
+      return{
+        ...state,isModalOpen:true,modalContent:"🚫 Invalid image URL"
+      }
+    }
+
+    new Error("Invalid type")
 
   };

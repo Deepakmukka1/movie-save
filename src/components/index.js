@@ -35,6 +35,13 @@ const PracticeContext = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(movieState);
+
+    if(!isValidUrl(movieState.image))
+    {
+      dispatch({ type: "INVALID_IMAGE_URL" });
+      return
+    }
+
     if (movieState.image && movieState.moviename && movieState.year) {
       dispatch({ type: "ADD_MOVIE", payload: movieState });
       setMovieState({

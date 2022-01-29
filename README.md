@@ -1,6 +1,6 @@
 # Movie-save
-A simple website created using various react hooks
-The motive of this project is how efficient and clean the development becomes by using various hooks.
+A simple website created using various react hooks.
+The motive of this project is to illustrate how efficient and clean the development becomes by using various hooks.
 
 Preview: https://deepakmukka1.github.io/movie-save/
 

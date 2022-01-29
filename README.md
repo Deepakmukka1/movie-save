@@ -1,4 +1,4 @@
-# movie-save
+# Movie-save
 A simple website created using various react hooks
 
 Preview: https://deepakmukka1.github.io/movie-save/
